@@ -1,0 +1,348 @@
+import {StyleSheet} from 'react-native';
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
+import {COLOR, FONT, FONT_SIZE} from './Globles';
+
+const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  titleText: {
+    fontSize: FONT_SIZE.F_19,
+    fontFamily: FONT.EXTRA_BOLD,
+    fontWeight: 'bold',
+    color: COLOR.DARK_BLUE,
+    margin: hp('1%'),
+  },
+
+  descriptionText: {
+    fontSize: FONT_SIZE.F_12,
+    fontFamily: FONT.REGULAR,
+    textAlign: 'center',
+    width: wp('55%'),
+    marginBottom: hp('3%'),
+  },
+
+  inputText: {
+    fontSize: FONT_SIZE.F_12,
+    color: COLOR.TITLE_COLOR,
+    paddingBottom: hp('0.5%'),
+    fontFamily: FONT.SEMI_BOLD,
+  },
+
+  inputField: {
+    width: wp('67%'),
+    paddingLeft: hp('1%'),
+    fontSize: FONT_SIZE.F_15,
+  },
+
+  inputFieldContainer: {
+    borderWidth: hp('0.1%'),
+    flexDirection: 'row',
+    width: wp('75%'),
+    alignItems: 'center',
+    borderRadius: hp('1%'),
+    borderColor: COLOR.DARK_BLUE,
+    height: hp('6.2%'),
+  },
+
+  navBtnTouchOpacity: {
+    width: wp('75%'),
+    height: hp('6.2%'),
+    backgroundColor: COLOR.DARK_BLUE,
+    borderRadius: hp('1%'),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  TouchOpacityInnerText: {
+    alignItems: 'center',
+    fontFamily: FONT.MEDIUM,
+    color: COLOR.WHITE,
+    fontSize: FONT_SIZE.F_14,
+  },
+
+  navText: {
+    fontFamily: FONT.MEDIUM,
+    fontSize: FONT_SIZE.F_12,
+    color: COLOR.TITLE_COLOR,
+  },
+
+  // ActivityList Screen Styles
+  activityScreenContainer: {
+    flex: 1,
+  },
+
+  flatListCardContainer: {
+    margin: hp('2.5%'),
+  },
+
+  createdByTextContainer: {
+    alignSelf: 'flex-end',
+    backgroundColor: '#8DB3D7',
+    paddingLeft: hp('0.5%'),
+    paddingRight: hp('0.5%'),
+    borderTopEndRadius: hp('0.5%'),
+    borderTopLeftRadius: hp('0.5%'),
+  },
+
+  createdByText: {
+    color: COLOR.WHITE,
+    fontSize: FONT_SIZE.F_13,
+    fontFamily: FONT.SEMI_BOLD,
+    padding: hp('0.4%'),
+  },
+
+  cardContainer: {
+    backgroundColor: '#E4F5EE',
+    padding: hp('2.5%'),
+    borderTopLeftRadius: hp('1.0%'),
+  },
+
+  activityTypeText: {
+    fontSize: FONT_SIZE.F_18,
+    fontWeight: 'bold',
+    color: COLOR.BLACK,
+  },
+
+  meetingAgenda: {
+    fontSize: FONT_SIZE.F_13,
+    fontFamily: FONT.MEDIUM,
+    marginBottom: hp('1.5%'),
+    marginTop: hp('1.5%'),
+  },
+
+  readMoreText: {
+    fontSize: FONT_SIZE.F_14,
+    fontWeight: 'bold',
+    color: COLOR.BLACK,
+  },
+
+  imageAndHostContentContainer: {
+    flexDirection: 'row',
+    paddingTop: hp('0.6%'),
+    paddingBottom: hp('0.6%'),
+  },
+
+  profileImage: {
+    width: wp('9.0%'),
+    borderRadius: hp('3.0%'),
+  },
+
+  hostContainer: {
+    paddingLeft: hp('0.5%'),
+  },
+
+  hostText: {
+    fontSize: FONT_SIZE.F_13,
+    paddingLeft: hp('0.5%'),
+    fontFamily: FONT.REGULAR,
+  },
+
+  host: {
+    fontWeight: 'bold',
+    fontSize: FONT_SIZE.F_14,
+    paddingBottom: hp('0.5%'),
+    paddingRight: hp('0.5%'),
+    color: COLOR.BLACK,
+    paddingLeft: hp('0.5%'),
+  },
+
+  dateAndVinueContainer: {
+    backgroundColor: '#37CF76',
+    flexDirection: 'row',
+    borderBottomLeftRadius: hp('1.0%'),
+    borderBottomRightRadius: hp('1.0%'),
+    justifyContent: 'space-between',
+    padding: hp('1.5%'),
+    marginBottom: hp('2%'),
+  },
+
+  clockIconAndItsData: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  dataAndTime: {
+    fontSize: FONT_SIZE.F_14,
+    fontFamily: FONT.SEMI_BOLD,
+    color: COLOR.BLACK,
+    marginBottom: hp('0.4%'),
+    marginRight: 5,
+  },
+
+  createActivityContainer: {
+    alignItems: 'flex-end',
+    paddingBottom: hp('3%'),
+    paddingRight: hp('3%'),
+  },
+
+  createActivityTop: {
+    width: wp('40%'),
+    height: hp('6.2%'),
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#00223E',
+    justifyContent: 'center',
+    borderRadius: hp('1.0%'),
+  },
+
+  createActivityText: {
+    fontSize: FONT_SIZE.F_14,
+    color: 'white',
+    marginLeft: hp('1.0%'),
+  },
+
+  // Create Activity Screen
+
+  moduleActivityListContainer: {
+    flex: 1,
+    padding: hp('2.7%'),
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+
+  moduleActivityListNavBtnContainer: {
+    backgroundColor: COLOR.DARK_BLUE,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopRightRadius: hp('2.0%'),
+    borderTopLeftRadius: hp('2.0%'),
+  },
+
+  AddActivityNavBtnText: {
+    color: COLOR.WHITE,
+    fontSize: FONT_SIZE.F_15,
+    fontFamily: FONT.BOLD,
+    marginLeft: hp('12%'),
+  },
+
+  moduleActivityContainer: {
+    borderRadius: hp('2.0%'),
+    backgroundColor: COLOR.WHITE,
+    borderWidth: hp('0.1%'),
+    borderColor: COLOR.WHITE,
+  },
+
+  moduleActivityListTitleText: {
+    paddingLeft: hp('0.3%'),
+    fontSize: FONT_SIZE.F_13,
+    fontFamily: FONT.REGULAR,
+    marginTop: hp('1.0%'),
+    marginBottom: hp('0.4%'),
+  },
+
+  formContainer: {
+    margin: hp('2%'),
+  },
+  meetingAgendaContainer: {
+    borderWidth: hp('0.2%'),
+    height: hp('19.0%'),
+    borderRadius: hp('1.0%'),
+    marginBottom: hp('3%'),
+  },
+  listMeetingAgenda: {
+    paddingLeft: hp('2.0%'),
+    fontSize: FONT_SIZE.F_14,
+  },
+
+  dropDownDefaultItemContainer: {
+    borderWidth: hp('0.2%'),
+    borderRadius: hp('1.0%'),
+  },
+  dropDownTextAndIconCantaier: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  selectedOption: {
+    fontSize: FONT_SIZE.F_14,
+    padding: hp('1.5%'),
+    paddingLeft: hp('2.0%'),
+    fontFamily: FONT.SEMI_BOLD,
+    color: COLOR.BLACK,
+  },
+
+  dropDownArrowIcon: {
+    marginRight: hp('0.5%'),
+    marginTop: hp('0.5%'),
+  },
+
+  dropDownOptionStyling: {
+    padding: hp('1.5%'),
+    margin: hp('0.1%'),
+    paddingLeft: hp('2.0%'),
+    borderRadius: hp('0.3%'),
+    backgroundColor: '#F6F6F6',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  dropDownOptionText: {
+    fontSize: FONT_SIZE.F_13,
+    fontFamily: FONT.SEMI_BOLD,
+    color: COLOR.BLACK,
+  },
+
+  moduleActivityListTextInput: {
+    borderWidth: hp('0.2%'),
+    borderRadius: hp('1.0%'),
+    paddingLeft: hp('2.0%'),
+    height: hp('6.0%'),
+    fontSize: FONT_SIZE.F_14,
+  },
+
+  dateAndTimeContainer: {
+    flexDirection: 'row',
+  },
+
+  dateAndTimeInputFieldsContainer: {
+    flexDirection: 'row',
+    borderWidth: hp('0.2%'),
+    borderRadius: hp('1.0%'),
+    alignItems: 'center',
+    padding: hp('0.3%'),
+    marginRight: hp('0.7%'),
+  },
+
+  timeAndDateValue: {
+    fontSize: FONT_SIZE.F_15,
+    width: hp('16%'),
+    marginLeft: hp('0.5%'),
+  },
+
+  screenTwoSubmitContainer: {
+    width: wp('40%'),
+    height: hp('6.2%'),
+    backgroundColor: COLOR.DARK_BLUE,
+    borderRadius: hp('1%'),
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginBottom: hp('2.5%'),
+  },
+
+  submitNavBtnText: {
+    fontFamily: FONT.SEMI_BOLD,
+    color: COLOR.WHITE,
+    fontSize: FONT_SIZE.F_15,
+    marginLeft: hp('2.0%'),
+  },
+
+  //Header Module
+  headerIcon: {
+    backgroundColor: COLOR.DARK_BLUE,
+    padding: hp('1.5%'),
+    paddingLeft: hp('2.5%'),
+    paddingRight: hp('2.5%'),
+    paddingTop: hp('1%'),
+  },
+});
+
+export default Styles;

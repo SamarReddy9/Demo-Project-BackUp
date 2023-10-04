@@ -1,0 +1,62 @@
+import React, {useState, useMemo} from 'react';
+import {View, Text, Button} from 'react-native';
+
+const Factorial = () => {
+  const [count, setCount] = useState(0);
+
+  const [number, setNumber] = useState(5);
+
+  const factorial = useMemo(() => {
+    let answer = 1;
+    for (let i = number; i >= 1; i--) {
+      answer = answer * i;
+    }
+    console.log('Factorial');
+    return answer;
+  }, [number]);
+
+  return (
+    <View>
+      <Text>Number : {count}</Text>
+      <Button title="Inc" onPress={() => setCount(count + 1)} />
+
+      <Text>
+        Factorial of {number} is: {factorial}
+      </Text>
+      <Button
+        title="Calculate Factorial"
+        onPress={() => setNumber(number + 1)}
+      />
+    </View>
+  );
+};
+
+export default Factorial;
+
+// import {View, Text, Button} from 'react-native';
+// import React, {useState, useCallback} from 'react';
+// import MyComponent from './MyComponent';
+
+// const Demo = () => {
+//   const [count, setCount] = useState(0);
+//   const [list, setList] = useState([]);
+
+//   const addList = useCallback(() => {
+//     setList(data => [...data, 'CRM']);
+//   }, [list]);
+
+//   return (
+//     <View>
+//       <Text>Number : {count}</Text>
+//       <Button
+//         title="Inc"
+//         onPress={() => {
+//           setCount(count + 1);
+//         }}
+//       />
+//       <MyComponent list={list} addList={addList} />
+//     </View>
+//   );
+// };
+
+// export default Demo;

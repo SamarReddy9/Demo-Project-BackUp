@@ -1,0 +1,172 @@
+// import React from 'react';
+// import {View, Text, StyleSheet, FlatList} from 'react-native';
+
+// const tableData = [
+//   {budget: '15 - 25', bookingValue: '50 L', units: 3, percentage: '0.8'},
+//   {budget: '25 - 35', bookingValue: '60 L', units: 2, percentage: '1'},
+//   {budget: '35 - 45', bookingValue: '3.6 Cr', units: 12, percentage: '3'},
+//   {budget: '45 - 55', bookingValue: '45 L', units: 1, percentage: '0.2'},
+//   {budget: '55 - 65', bookingValue: '1 Cr', units: 2, percentage: '0.4'},
+//   {budget: '65 - 75', bookingValue: '71 Lc', units: 1, percentage: '0.2'},
+// ];
+
+// const Demo = () => {
+//   const renderTableData = ({item}) => {
+//     const {budget, bookingValue, units, percentage} = item;
+
+//     return (
+//       <View style={styles.row}>
+//         <Text style={styles.cell}>{budget}</Text>
+//         <Text style={styles.cell}>{bookingValue}</Text>
+//         <Text style={styles.cell}>{units}</Text>
+//         <Text style={styles.cell}>{percentage}</Text>
+//       </View>
+//     );
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <FlatList
+//         data={tableData}
+//         keyExtractor={(item, index) => `${index}`}
+//         renderItem={renderTableData}
+//       />
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     padding: 10,
+//   },
+//   row: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     paddingVertical: 10,
+//   },
+//   cell: {
+//     flex: 1,
+//     textAlign: 'center',
+//   },
+// });
+
+// export default Demo;
+
+// import {View, Text, TouchableOpacity, ScrollView, LogBox} from 'react-native';
+// import React, {useState} from 'react';
+// import Styles from '../config/Styles';
+// import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+// import Header from './Header';
+// import {Table, Row, Rows} from 'react-native-table-component';
+// import BoldArrowUp from '../assets/svg/BoldArrowUp.svg';
+// import BoldArrowDown from '../assets/svg/BoldArrowDown.svg';
+
+// const Demo = props => {
+//   const listTitles = [
+//     <Text>Budget</Text>,
+//     <Text>Booking Value</Text>,
+//     <Text>Units</Text>,
+//     <Text>Percentage</Text>,
+//   ];
+
+//   const data = [
+//     {budget: '15 - 25', bookingValue: '50 L', units: 3, percentage: '0.8'},
+//     {budget: '25 - 35', bookingValue: '60 L', units: 2, percentage: '1'},
+//     {budget: '35 - 45', bookingValue: '3.6 Cr', units: 12, percentage: '3'},
+//     {budget: '45 - 55', bookingValue: '45 L', units: 1, percentage: '0.2'},
+//     {budget: '55 - 65', bookingValue: '1 Cr', units: 2, percentage: '0.4'},
+//     {budget: '65 - 75', bookingValue: '71 Lc', units: 1, percentage: '0.2'},
+//   ];
+
+//   const tableData = data.map(
+//     ({budget: bhk, bookingValue, units, percentage}) => {
+//       return [
+//         <Text>{bhk}</Text>,
+//         <Text>{bookingValue}</Text>,
+//         <Text>{units}</Text>,
+//         <Text>{percentage}%</Text>,
+//       ];
+//     },
+//   );
+
+//   const [showTableBHKThree, setShowTableBHKThree] = useState(true);
+//   const toggleTableBHKThree = () => setShowTableBHKThree(!showTableBHKThree);
+
+//   const BookingCountValueBHKThree = '8.67 Cr';
+//   const BookingUnitValueThree = 4;
+//   const BookingPercentageValueThree = 25;
+
+//   LogBox.ignoreLogs(['Invalid prop textStyle of type array supplied to Cell']);
+//   return (
+//     <View style={Styles.container}>
+//       <Header {...props} title="Performance reports" />
+//       <ScrollView
+//         style={Styles.performanceReportsContainer}
+//         showsVerticalScrollIndicator={false}>
+//         <View>
+//           <View style={Styles.tableContainer}>
+//             <Table>
+//               <TouchableOpacity
+//                 onPress={toggleTableBHKThree}
+//                 style={Styles.tableHeadContainer}>
+//                 <View style={{flexDirection: 'row'}}>
+//                   <View style={Styles.tableHeadText}>
+//                     <Text style={Styles.bhkTableTitle}>3 BHK</Text>
+//                   </View>
+//                   <View style={[Styles.tableHeadText, {marginLeft: 22}]}>
+//                     <Text style={Styles.tableHeaderTopLayerText}>
+//                       Booking value
+//                     </Text>
+//                     <Text style={Styles.bhkTableTitle}>
+//                       {BookingCountValueBHKThree}
+//                     </Text>
+//                   </View>
+
+//                   <View style={[Styles.tableHeadText, {marginLeft: 33}]}>
+//                     <Text style={Styles.tableHeaderTopLayerText}>Units</Text>
+//                     <Text style={Styles.bhkTableTitle}>
+//                       {BookingUnitValueThree}
+//                     </Text>
+//                   </View>
+//                   <View style={[Styles.tableHeadText, {marginLeft: 23}]}>
+//                     <Text style={Styles.tableHeaderTopLayerText}>
+//                       Percentage
+//                     </Text>
+//                     <Text style={Styles.bhkTableTitle}>
+//                       {BookingPercentageValueThree} %
+//                     </Text>
+//                   </View>
+//                   <View style={Styles.tableHeadSVG}>
+//                     {showTableBHKThree ? (
+//                       <BoldArrowUp width={hp('4.5%')} height={hp('3%')} />
+//                     ) : (
+//                       <BoldArrowDown width={hp('4.5%')} height={hp('3%')} />
+//                     )}
+//                   </View>
+//                 </View>
+//               </TouchableOpacity>
+//             </Table>
+//             <View style={Styles.tableListContainer}>
+//               {showTableBHKThree && (
+//                 <View
+//                   style={[
+//                     {display: showTableBHKThree ? 'flex' : 'none'},
+//                     Styles.tableListItemsContainer,
+//                   ]}>
+//                   <Table>
+//                     <Row data={listTitles} />
+//                     <Rows data={tableData} />
+//                   </Table>
+//                 </View>
+//               )}
+//             </View>
+//           </View>
+//         </View>
+//       </ScrollView>
+//     </View>
+//   );
+// };
+
+// export default Demo;

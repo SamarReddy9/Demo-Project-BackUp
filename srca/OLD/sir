@@ -1,0 +1,626 @@
+<TextInput style={[Styles.inputField, {marginTop: 10}]} />
+
+
+
+
+
+
+
+
+
+import React, {useState} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faEye, faEyeLowVision} from '@fortawesome/free-solid-svg-icons';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+
+import RegisterImage from './RegisterImage.svg';
+import SetNewPasswordImage from './SetNewPasswordImage.svg';
+import SetNewPasswordStarImage from './SetNewPasswordStarImage.svg';
+import ForgotPasswordImage from './ForgotPasswordImage.svg';
+import {COLOR, FONT} from '../config/Globles';
+import Styles from '../config/Styles';
+
+const DesignComponent = props => {
+  const {navigation, data, route} = props;
+  // console.log(route.name);
+  const [showPassword, setShowPassword] = useState(true);
+  const [conformPassword, setConformPassword] = useState(true);
+  const [ShowImage, setShowImage] = useState(data.Star);
+  const [ForgetPassword, setForgetPassword] = useState(data.HidePasswordFild);
+  const [hideEyeIcons, sethideEyeIcons] = useState(data.EyeIcons);
+
+  let ImageHandilar;
+
+  switch (route.name) {
+    case 'SetNewPasswordScreen':
+      ImageHandilar = SetNewPasswordImage;
+      break;
+    case 'ResetPasswordScreen':
+      ImageHandilar = SetNewPasswordImage;
+      break;
+    case 'ForgotPasswordScreen':
+      ImageHandilar = ForgotPasswordImage;
+      break;
+    default:
+      ImageHandilar = RegisterImage;
+      break;
+  }
+
+  return (
+    <View style={Styles.Container}>
+      <View>
+        <ImageHandilar />
+      </View>
+      <View style={Styles.StartSymbolMain}>
+        {ShowImage ? (
+          <>
+            <SetNewPasswordStarImage style={Styles.Start} />
+            <SetNewPasswordStarImage style={Styles.Start} />
+            <SetNewPasswordStarImage style={Styles.Start} />
+            <SetNewPasswordStarImage style={Styles.Start} />
+          </>
+        ) : null}
+      </View>
+      <View>
+        <Text style={Styles.RegisterCss}>{data.title}</Text>
+      </View>
+      <View>
+        <Text style={Styles.RegesterDetailsText} numberOfLines={2}>
+          {data.desc}
+        </Text>
+      </View>
+
+      <View style={Styles.RegisterGroup}>
+        <View>
+          <Text style={Styles.MailText}>{data.firstInputText}</Text>
+        </View>
+        <View style={Styles.ShowEmailMain}>
+          <TextInput
+            style={Styles.InputFildMail}
+            secureTextEntry={conformPassword}
+          />
+          {hideEyeIcons ? (
+            <TouchableOpacity
+              onPress={() => setConformPassword(!conformPassword)}>
+              {conformPassword ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeLowVision} />
+              )}
+            </TouchableOpacity>
+          ) : null}
+        </View>
+        <View>
+          <Text style={Styles.PasswordText}>{data.secondInputText}</Text>
+        </View>
+
+        <View>
+          {!ForgetPassword ? (
+            <View style={Styles.ShowPasswordMain}>
+              <TextInput
+                style={Styles.ShowPasswordInput}
+                secureTextEntry={showPassword}
+              />
+              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                {showPassword ? (
+                  <FontAwesomeIcon icon={faEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeLowVision} />
+                )}
+              </TouchableOpacity>
+            </View>
+          ) : null}
+        </View>
+      </View>
+
+      <View style={Styles.OpacityGroup}>
+        <TouchableOpacity
+          style={Styles.ButtonTouchOpacity}
+          onPress={() => {
+            navigation.navigate(data.navPath);
+          }}>
+          <Text style={Styles.TouchOpacityInnerText}>{data.btnText}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate(data.NavTagTwo);
+          }}>
+          <Text style={Styles.BottomTagStyle}>{data.bottomTagText}</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default DesignComponent;
+
+
+
+
+
+
+
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import React, {useState} from 'react';
+
+import RegisterPicture from '../assets/svg/RegisterPicture.svg';
+import SetNewPasswordPicture from '../assets/svg/SetNewPasswordPicture.svg';
+import ForgotPasswordPicture from '../assets/svg/ForgotPasswordPicture.svg';
+
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faEye, faEyeLowVision} from '@fortawesome/free-solid-svg-icons';
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
+import {COLOR, FONT, FONT_SIZE} from '../assets/svg/fonts/Globles';
+
+const DesignComponent = props => {
+  const {route, navigation, data} = props;
+  const [showPassword, setShowPassword] = useState(true);
+  const [showPasswordIcon, setShowPasswordIcon] = useState(true);
+
+  let Picture;
+  switch (route.name) {
+    case 'Register':
+      Picture = RegisterPicture;
+      break;
+
+    case 'SetNewPassword':
+      Picture = SetNewPasswordPicture;
+      break;
+    case 'Login':
+      Picture = RegisterPicture;
+      break;
+    case 'ForgotPassword':
+      Picture = ForgotPasswordPicture;
+      break;
+    case 'ResetPassword':
+      Picture = SetNewPasswordPicture;
+      break;
+  }
+
+  return (
+    <View style={Styles.container}>
+      <View>
+        <Picture />
+      </View>
+      <View>{<Text style={Styles.titleName}>{data.title}</Text>}</View>
+      {route.name == 'ResetPassword' ? null : (
+        <View>
+          <Text style={Styles.descriptionText} numberOfLines={2}>
+            {data.desc}
+          </Text>
+        </View>
+      )}
+      <View style={Styles.FormContainer}>
+        <View>
+          <Text style={Styles.firstInputText}>{data.firstInputText}</Text>
+        </View>
+
+        <View style={Styles.InputFeldContainer}>
+          {route.name == 'SetNewPassword' || route.name == 'ResetPassword' ? (
+            <>
+              <TextInput
+                style={Styles.MailInputField}
+                secureTextEntry={showPasswordIcon}
+              />
+              <TouchableOpacity
+                onPress={() => setShowPasswordIcon(!showPasswordIcon)}>
+                {showPasswordIcon ? (
+                  <FontAwesomeIcon icon={faEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeLowVision} />
+                )}
+              </TouchableOpacity>
+            </>
+          ) : (
+            <TextInput style={Styles.MailInputField} />
+          )}
+        </View>
+
+        <View>
+          <Text style={Styles.secondInputText}>{data.secondInputText}</Text>
+        </View>
+
+        {route.name == 'ForgotPassword' ? null : (
+          <View style={Styles.InputFeldContainer}>
+            <TextInput
+              style={Styles.PasswordInputField}
+              secureTextEntry={showPassword}
+            />
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              {showPassword ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeLowVision} />
+              )}
+            </TouchableOpacity>
+          </View>
+        )}
+        <View style={Styles.OpacityGroup}>
+          <TouchableOpacity
+            style={Styles.ButtonTouchOpacity}
+            onPress={() => navigation.navigate(data.navpathforbtn)}>
+            <Text style={Styles.TouchOpacityInnerText}>{data.btnText}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(data.navpathforText)}>
+          <Text style={Styles.BottomNavigationText}>{data.navText}</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default DesignComponent;
+
+const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  titleName: {
+    fontSize: FONT_SIZE.F_18,
+    fontFamily: FONT.BOLD,
+    color: COLOR.DARK_BLUE,
+    margin: hp('1%'),
+  },
+  descriptionText: {
+    fontSize: FONT_SIZE.F_11,
+    fontFamily: FONT.REGULAR,
+    width: wp('50%'),
+    height: hp('4%'),
+    textAlign: 'center',
+  },
+
+  FormContainer: {
+    marginTop: hp('3%'),
+    marginBottom: hp('3%'),
+  },
+
+  firstInputText: {
+    fontFamily: FONT.SEMI_BOLD,
+    fontSize: FONT_SIZE.F_12,
+    color: COLOR.TITLE_COLOR,
+    paddingBottom: hp('0.5%'),
+  },
+  secondInputText: {
+    fontFamily: FONT.SEMI_BOLD,
+    fontSize: FONT_SIZE.F_10,
+    color: COLOR.TITLE_COLOR,
+    paddingBottom: hp('0.5%'),
+    paddingTop: hp('1.0%'),
+  },
+
+  InputFeldContainer: {
+    borderWidth: 1,
+    borderColor: COLOR.DARK_BLUE,
+    flexDirection: 'row',
+    alignContent: 'center',
+    alignItems: 'center',
+    width: wp('60%'),
+    height: hp('5%'),
+    borderRadius: hp('1%'),
+  },
+
+  MailInputField: {
+    width: wp('54%'),
+    paddingLeft: hp('1.0%'),
+    fontSize: FONT_SIZE.F_10,
+  },
+
+  PasswordInputField: {
+    width: wp('54%'),
+    paddingLeft: hp('1.0%'),
+    fontSize: FONT_SIZE.F_10,
+  },
+
+  BottomNavigationText: {
+    fontFamily: FONT.MEDIUM,
+    fontSize: FONT_SIZE.F_10, 
+    color: COLOR.TITLE_COLOR,
+    paddingTop: hp('1.0%'),
+  },
+
+  OpacityGroup: {
+    paddingTop: hp('3.0%'),
+  },
+
+  ButtonTouchOpacity: {
+    width: wp('60'),
+    height: hp('5'),
+    backgroundColor: COLOR.DARK_BLUE,
+    borderRadius: hp('1%'),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  TouchOpacityInnerText: {
+    alignItems: 'center',
+    color: COLOR.WHITE,
+    fontFamily: FONT.MEDIUM,
+    fontSize: FONT_SIZE.F_11,
+  },
+});
+-----------------------------------------------------------------------------------------------------------
+import {View, Text, ScrollView, FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+
+const Api = () => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    jsonapi();
+  }, []);
+  const jsonapi = () => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(obj => obj.json())
+      .then(ele => setData(ele));
+  };
+  // console.log(data);
+  return (
+    <View>
+      {data == null ? (
+        <Text>Loading...</Text>
+      ) : (
+        <FlatList
+          data={data}
+          renderItem={({item}) => (
+            <Text>
+              {item.id}. {item.title}
+            </Text>
+          )}
+        />
+      )}
+    </View>
+  );
+};
+
+export default Api;
+---------------------------------------------------------
+
+
+
+
+
+
+import {View, Text, ScrollView, FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Image} from 'react-native-svg';
+
+const Activities = () => {
+  const [data, setData] = useState([
+    {
+      Invitee: 'Santosh Joshi',
+      ActivityType: 'Internal meeting',
+      MeetingAgenda:
+        'Meeting Agenda lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      image: '',
+      Host: 'Sumit Desai',
+      Position: 'Team Leader',
+      Date: 'Today at ',
+      Time: '04.00 PM',
+      Location: 5,
+    },
+    {
+      Invitee: 'You',
+      ActivityType: 'Daily standup meeting',
+      MeetingAgenda:
+        'Team hurdle lorem ipsum dolor sit amet. consectetur adipiscing elit.',
+      image: '',
+      Host: 'Pradeep Kumar',
+      Position: 'Project Head',
+      Date: 'Everyday at',
+      Time: '11.00 AM',
+      Location: 1,
+    },
+  ]);
+
+  return (
+    <View>
+      <FlatList
+        data={data}
+        renderItem={({item}) => (
+          <View>
+            <View>
+              <Text>Created by: {item.Invitee}</Text>
+            </View>
+            <View>
+              <Text>{item.ActivityType}</Text>
+              <View>
+                <Text>{item.MeetingAgenda}</Text>
+                <Text>Read more...</Text>
+              </View>
+              <View>
+                <View>
+                  <Image />
+                </View>
+                <View>
+                  <Text>Host</Text>
+                  <Text>
+                    {item.Host} <Text>{item.Position}</Text>{' '}
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View>
+              <View>
+                <Text>
+                  {item.Date}
+                  {item.Time}
+                </Text>
+              </View>
+              <View>
+                <Text>Meeting room no. {item.Location}</Text>
+              </View>
+            </View>
+          </View>
+        )}
+      />
+    </View>
+  );
+};
+
+export default Activities;
+---------------------------------------------
+import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {Image} from 'react-native-svg';
+
+const Activities = () => {
+  const [data, setData] = useState([
+    {
+      Invitee: 'Santosh Joshi',
+      ActivityType: 'Internal meeting',
+      MeetingAgenda:
+        'Meeting Agenda lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      image: '',
+      Host: 'Sumit Desai',
+      Position: 'Team Leader',
+      Date: 'Today at ',
+      Time: '04.00 PM',
+      Location: 5,
+    },
+    {
+      Invitee: 'You',
+      ActivityType: 'Daily standup meeting',
+      MeetingAgenda:
+        'Team hurdle lorem ipsum dolor sit amet. consectetur adipiscing elit.',
+      image: '',
+      Host: 'Pradeep Kumar',
+      Position: 'Project Head',
+      Date: 'Everyday at',
+      Time: '11.00 AM',
+      Location: 1,
+    },
+  ]);
+
+  return (
+    <View style={ActivitiesStyles.container}>
+      <FlatList
+        data={data}
+        renderItem={({item}) => (
+          <View style={ActivitiesStyles.cardContainer}>
+            <View>
+              <Text>Created by: {item.Invitee}</Text>
+            </View>
+            <View>
+              <Text>{item.ActivityType}</Text>
+              <View>
+                <Text>{item.MeetingAgenda}</Text>
+                <Text>Read more...</Text>
+              </View>
+              <View>
+                <View>
+                  <Image />
+                </View>
+                <View>
+                  <Text>Host</Text>
+                  <Text>
+                    {item.Host} <Text>{item.Position}</Text>{' '}
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View style={ActivitiesStyles.dateAndVinueContainer}>
+              <View style={ActivitiesStyles.dateAndVinueSubContainer}>
+                <Text>
+                  {item.Date}
+                  {item.Time}
+                </Text>
+                <Text>Meeting room no. {item.Location}</Text>
+              </View>
+            </View>
+          </View>
+        )}
+      />
+
+      <TouchableOpacity style={ActivitiesStyles.createActivityContainer}>
+        <View style={ActivitiesStyles.createActivityTop}>
+          <Image />
+          <Text style={ActivitiesStyles.createActivityText}>
+            Create Activity
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default Activities;
+
+const ActivitiesStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    borderWidth: 3,
+    width: 450,
+    height: 300,
+    alignSelf: 'center',
+    margin: 10,
+  },
+  cardContainer: {
+    borderWidth: 2,
+    borderColor: 'red',
+    marginBottom: 20,
+    width: 440,
+    height: 220,
+    backgroundColor: '#e3fce3',
+  },
+  dateAndVinueContainer: {
+    backgroundColor: '#a1d6a1',
+
+    position: 'relative',
+  },
+  dateAndVinueSubContainer: {
+    position: 'absolute',
+    top: 80,
+    flexDirection: 'row',
+  },
+  // shyam: {
+  //   alignItems: 'flex-end',
+  //   justifyContent: 'space-between',
+  //   flex: 1,
+  //   alignContent: 'space-between',
+  // },
+
+  createActivityContainer: {
+    alignItems: 'flex-end',
+  },
+  createActivityTop: {
+    backgroundColor: 'yellow',
+    width: 200,
+    height: 40,
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#00223E',
+    justifyContent: 'flex-end',
+    borderRadius: 10,
+  },
+  createActivityText: {
+    fontSize: 21,
+    color: 'white',
+    margin: 5,
+  },
+});
